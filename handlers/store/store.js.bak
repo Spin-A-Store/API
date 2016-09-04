@@ -1,0 +1,32 @@
+// Load required packages
+var Store = require('../../db/models/store/store.js');
+var qs = require('querystring');
+
+// Create endpoint /api/users for POST
+exports.createStore = function(req, res) {
+   
+  
+		console.log("AAAAAAAAAAA"+qs.stringify(req.body))
+		console.log("AAAAAAAAAAA"+req.body.address)
+		
+		
+    
+   
+ var store = new Store({
+  name: req.body.name,
+  address: req.body.address,
+  ownerName: req.body.ownerName,
+  agentName: req.body.agentName,
+ });
+        
+  
+
+  store.save(function(err,data) {
+   if (err)
+    res.send(err);
+
+  res.json(data);
+  });
+};
+
+
